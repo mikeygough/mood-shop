@@ -49,12 +49,17 @@ body {
 
 /* entire card */
 .item {
-  /* border: 2px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: bisque;
+  transition: transform 200ms ease-in;
+}
+
+/* entire card animation */
+.item:hover {
+  transform: scale(1.02);
 }
 
 /* image in the card */
@@ -75,7 +80,7 @@ body {
 
 /* price only */
 .item p:nth-child(3) {
-  font-weight: 200;
+  /* font-weight: 200; */
   /* play with color, font */
   /* secondary to reading text */
   /* letter-spacing: .1rem; */
@@ -83,15 +88,22 @@ body {
 
 /* button */
 .item button {
-  background: rgba(0, 175, 0, 0.586);
   width: 100px;
   height: 35px;
   margin-bottom: 10px;
   border: none;
   border-radius: 3px;
+  background-color: rgba(0, 175, 0, 0.586);
+  transition:
+    background-color 200ms ease-in,
+    color 100ms ease-in,
+    font-weight 200ms ease-in;
 }
 
-.item button:hover {
+/* button animation */
+.item:hover button {
   background: rgb(0, 175, 0);
   font-weight: 700;
+  color: white;
 }
+
