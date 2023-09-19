@@ -64,7 +64,8 @@ body {
 
 /* image in the card */
 .item img {
-  
+  box-shadow: 0px 2px 5px;
+  border-radius: 3px;
 }
 
 /* description and price in card */
