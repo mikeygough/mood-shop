@@ -13,8 +13,24 @@ for (let i = 0; i < data.length; i += 1) {
   console.log(data[i].image);
 	img.width = 300
 	img.height = 300
-	// Add the image to the div
+	// create description p
+	const desc = document.createElement('p');
+	desc.innerHTML = data[i].desc
+	// create price p
+	const price = document.createElement('p');
+	price.innerHTML = data[i].price
+	// create add to cart button
+	const button = document.createElement('button');
+	// add unique ID with .name
+	button.id = data[i].name
+	// create custom data attribute to hold price
+	button.dataset.price = data[i].price
+	button.innerHTML = 'Add to Cart'
+	// Add the image, description, price and button to the div
 	newDiv.appendChild(img)
+	newDiv.appendChild(desc)
+	newDiv.appendChild(price)
+	newDiv.appendChild(button)
 	console.log(img) // Check the console!
 	itemsContainer.appendChild(newDiv)
 }
