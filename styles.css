@@ -10,6 +10,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   background-color: bisque;
+  margin-bottom: 2rem;
 }
 
 .page-header ul {
@@ -21,6 +22,76 @@ body {
 
 .page-header a {
   display: block;
-  padding: 0.5em;
+  padding: 0.15em;
+  margin-right: .5rem;
+  border-bottom: 1px solid;
   text-decoration: none;
+  color: black;
+}
+
+.page-header a:hover {
+  color: rgb(0, 175, 0);
+}
+
+.items {
+  width: 80%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+.items img {
+  width: 100%;
+  height: auto;
+}
+
+/* entire card */
+.item {
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: bisque;
+}
+
+/* image in the card */
+.item img {
+  
+}
+
+/* description and price in card */
+.item p {
+  margin: 0.5rem;
+  /* text-align: center; */
+}
+
+/* description only */
+.item p:nth-child(2) {
+  
+}
+
+/* price only */
+.item p:nth-child(3) {
+  font-weight: 200;
+  /* play with color, font */
+  /* secondary to reading text */
+  /* letter-spacing: .1rem; */
+}
+
+/* button */
+.item button {
+  background: rgba(0, 175, 0, 0.586);
+  width: 100px;
+  height: 35px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 3px;
+}
+
+.item button:hover {
+  background: rgb(0, 175, 0);
+  font-weight: 700;
 }
