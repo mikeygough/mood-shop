@@ -47,5 +47,15 @@ function addItem(name, price) {
 
 function showItems() {
 	console.log(`You have ${cart.length} items in your cart`);
-	console.log(cart);
+	for (let i = 0; i < cart.length; i++) {
+		console.log(`${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
+	}
+
 }
+
+addItem('Apple', 0.99)
+addItem('Orange', 1.29)
+addItem('Opinion', 0.02)
+addItem('Frisbee', 9.92)
+
+showItems()
