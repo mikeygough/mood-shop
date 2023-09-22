@@ -2,9 +2,12 @@ import data from "./data.js";
 
 // get itemsContainer
 const itemsContainer = document.querySelector("#items");
-// get cart
+// get cartQty
+const cartQty = document.getElementById("cart-qty");
+// get itemList
 const itemList = document.getElementById("item-list");
-// console.log(itemList);
+// get cartTotal
+const cartTotal = document.getElementById("cart-total");
 
 // loop through data, create html elements
 for (let i = 0; i < data.length; i += 1) {
@@ -62,16 +65,26 @@ function addItem(name, price) {
 // -------------------------------------------------------------------
 // Show Items
 function showItems() {
-  console.log(`\nYou have ${getQty()} items in your cart`);
-  console.log(`Cart Total: $${getTotal()}`);
+  // console.log(`\nYou have ${getQty()} items in your cart`);
+  // console.log(`Cart Total: $${getTotal()}`);
+  // set cartQty and cartTotal html
+	cartQty.innerHTML = `You have ${getQty()} items in your cart`;
+  cartTotal.innerHTML = `Cart Total: $${getTotal()}`;
 
-  let itemStr = "";
+  // set itemList html
+	let itemStr = "";
   for (let i = 0; i < cart.length; i++) {
     // console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
-    itemStr += `<li> ${cart[i].name} $${cart[i].price} x ${cart[i].qty} = $${
-      cart[i].price * cart[i].qty
-    } </l1>`;
+    // define intermediate variables
+    // const name = cart[i].name;
+    // const price = cart[i].price;
+    // const qty = cart[i].qty;
+    // 			↓↓↓ this is shorthand for ↑↑↑
+    const { name, price, qty } = cart[i];
+    // this works if these variables match the names of the keys in the object
+    itemStr += `<li> ${name} $${price} x ${qty} = $${price * qty} </l1>`;
   }
+  // add to innerHTML
   itemList.innerHTML = itemStr;
 }
 
