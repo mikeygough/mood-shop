@@ -1,6 +1,10 @@
 import data from "./data.js";
 
+// get itemsContainer
 const itemsContainer = document.querySelector("#items");
+// get cart
+const itemList = document.getElementById("item-list");
+// console.log(itemList);
 
 // loop through data, create html elements
 for (let i = 0; i < data.length; i += 1) {
@@ -61,9 +65,14 @@ function showItems() {
   console.log(`\nYou have ${getQty()} items in your cart`);
   console.log(`Cart Total: $${getTotal()}`);
 
+  let itemStr = "";
   for (let i = 0; i < cart.length; i++) {
-    console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
+    // console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
+    itemStr += `<li> ${cart[i].name} $${cart[i].price} x ${cart[i].qty} = $${
+      cart[i].price * cart[i].qty
+    } </l1>`;
   }
+  itemList.innerHTML = itemStr;
 }
 
 // -------------------------------------------------------------------
