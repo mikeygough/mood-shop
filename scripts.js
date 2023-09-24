@@ -121,7 +121,7 @@ function showItems() {
     const { name, price, qty } = cart[i];
     // this works if these variables match the names of the keys in the object
     itemStr += `<li> 
-			${name} $${price} x ${qty} = $${price * qty} 
+			${name} $${price.toFixed(2)} x ${qty} = $${(price * qty).toFixed(2)}
 			<button class="remove" data-name="${name}">Remove</button>
 			<button class="add-one" data-name="${name}"> + </button>
 			<button class="remove-one" data-name="${name}"> - </button>
