@@ -21,9 +21,9 @@ for (let i = 0; i < data.length; i += 1) {
   img.width = 300;
   img.height = 300;
   // create title
-	const name = document.createElement("p");
-	name.innerHTML = data[i].name.toUpperCase();
-	// create description p
+  const name = document.createElement("p");
+  name.innerHTML = data[i].name.toUpperCase();
+  // create description p
   const desc = document.createElement("p");
   desc.innerHTML = data[i].desc;
   // create price p
@@ -38,7 +38,7 @@ for (let i = 0; i < data.length; i += 1) {
   button.innerHTML = "Add to Cart";
   // Add the image, description, price and button to the div
   newDiv.appendChild(img);
-	newDiv.appendChild(name);
+  newDiv.appendChild(name);
   newDiv.appendChild(desc);
   newDiv.appendChild(price);
   newDiv.appendChild(button);
@@ -52,10 +52,16 @@ const allItemsButton = Array.from(document.querySelectorAll("button"));
 
 allItemsButton.forEach((elt) =>
   elt.addEventListener("click", () => {
-    addItem(elt.getAttribute("id"), elt.getAttribute("data-price"));
+    addItem(
+      capitalizeFirstLetter(elt.getAttribute("id")),
+      Number(elt.getAttribute("data-price"))
+    );
+    console.log(elt.target);
     showItems();
   })
 );
+
+console.log(allItemsButton);
 
 // initialize cart
 const cart = [];
@@ -190,16 +196,7 @@ function updateCart(name, qty) {
 }
 
 // -------------------------------------------------------------------
-// Test
-addItem("Apple", 0.99);
-addItem("Orange", 1.29);
-addItem("Opinion", 0.02);
-addItem("Frisbee", 9.92);
-addItem("Apple", 0.99);
-addItem("Apple", 0.99);
-addItem("Orange", 1.29);
-
-showItems();
-removeItem("Apple", 1);
-removeItem("Frisbee");
-showItems();
+// Capitalize First Letter
+function capitalizeFirstLetter(string) {
+  return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
+}
