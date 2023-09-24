@@ -54,6 +54,18 @@ allItemsButton.forEach(elt => elt.addEventListener('click', () => {
 // initialize cart
 const cart = [];
 
+
+// -------------------------------------------------------------------
+// Handle clicks on list
+itemList.onclick = function (e) {
+	// console.log(e.target);
+	if (e.target && e.target.classList.contains('remove')) {
+		const name = e.target.dataset.name; // data-name=?
+		removeItem(name);
+	}
+}
+
+
 // -------------------------------------------------------------------
 // Add Item
 function addItem(name, price) {
@@ -91,7 +103,10 @@ function showItems() {
     // 			↓↓↓ this is shorthand for ↑↑↑
     const { name, price, qty } = cart[i];
     // this works if these variables match the names of the keys in the object
-    itemStr += `<li> ${name} $${price} x ${qty} = $${price * qty} </l1>`;
+    itemStr += `<li> 
+			${name} $${price} x ${qty} = $${price * qty} 
+			<button class="remove" data-name="${name}">Remove</button>
+		</l1>`;
   }
   // add to innerHTML
   itemList.innerHTML = itemStr;
@@ -128,6 +143,7 @@ function removeItem(name, qty = 0) {
       if (cart[i].qty < 1 || qty === 0) {
         cart.splice(i, 1);
       }
+			showItems();
       return;
     }
   }
