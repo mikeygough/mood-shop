@@ -62,6 +62,12 @@ itemList.onclick = function (e) {
 	if (e.target && e.target.classList.contains('remove')) {
 		const name = e.target.dataset.name; // data-name=?
 		removeItem(name);
+	} else if (e.target && e.target.classList.contains('add-one')) {
+		const name = e.target.dataset.name; // data-name=?
+		addItem(name);
+	} else if (e.target && e.target.classList.contains('remove-one')) {
+		const name = e.target.dataset.name; // data-name=?
+		removeItem(name, 1);
 	}
 }
 
@@ -74,6 +80,7 @@ function addItem(name, price) {
     if (cart[i].name === name) {
       // update quantity
       cart[i].qty++;
+			showItems();
       return;
     }
   }
@@ -106,6 +113,8 @@ function showItems() {
     itemStr += `<li> 
 			${name} $${price} x ${qty} = $${price * qty} 
 			<button class="remove" data-name="${name}">Remove</button>
+			<button class="add-one" data-name="${name}"> + </button>
+			<button class="remove-one" data-name="${name}"> - </button>
 		</l1>`;
   }
   // add to innerHTML
