@@ -46,31 +46,41 @@ for (let i = 0; i < data.length; i += 1) {
 const allItemsButton = Array.from(document.querySelectorAll("button"));
 // console.log(allItemsButton);
 
-allItemsButton.forEach(elt => elt.addEventListener('click', () => {
-	addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
-	showItems()
-}));
+allItemsButton.forEach((elt) =>
+  elt.addEventListener("click", () => {
+    addItem(elt.getAttribute("id"), elt.getAttribute("data-price"));
+    showItems();
+  })
+);
 
 // initialize cart
 const cart = [];
 
+// -------------------------------------------------------------------
+// Handle change events on update input
+itemList.onchange = function (e) {
+  if (e.target && e.target.classList.contains("update")) {
+    const name = e.target.dataset.name;
+    const qty = parseInt(e.target.value);
+    updateCart(name, qty);
+  }
+};
 
 // -------------------------------------------------------------------
 // Handle clicks on list
 itemList.onclick = function (e) {
-	// console.log(e.target);
-	if (e.target && e.target.classList.contains('remove')) {
-		const name = e.target.dataset.name; // data-name=?
-		removeItem(name);
-	} else if (e.target && e.target.classList.contains('add-one')) {
-		const name = e.target.dataset.name; // data-name=?
-		addItem(name);
-	} else if (e.target && e.target.classList.contains('remove-one')) {
-		const name = e.target.dataset.name; // data-name=?
-		removeItem(name, 1);
-	}
-}
-
+  // console.log(e.target);
+  if (e.target && e.target.classList.contains("remove")) {
+    const name = e.target.dataset.name; // data-name=?
+    removeItem(name);
+  } else if (e.target && e.target.classList.contains("add-one")) {
+    const name = e.target.dataset.name; // data-name=?
+    addItem(name);
+  } else if (e.target && e.target.classList.contains("remove-one")) {
+    const name = e.target.dataset.name; // data-name=?
+    removeItem(name, 1);
+  }
+};
 
 // -------------------------------------------------------------------
 // Add Item
@@ -80,7 +90,7 @@ function addItem(name, price) {
     if (cart[i].name === name) {
       // update quantity
       cart[i].qty++;
-			showItems();
+      showItems();
       return;
     }
   }
@@ -96,11 +106,11 @@ function showItems() {
   // console.log(`\nYou have ${getQty()} items in your cart`);
   // console.log(`Cart Total: $${getTotal()}`);
   // set cartQty and cartTotal html
-	cartQty.innerHTML = `You have ${getQty()} items in your cart`;
+  cartQty.innerHTML = `You have ${getQty()} items in your cart`;
   cartTotal.innerHTML = `Cart Total: $${getTotal()}`;
 
   // set itemList html
-	let itemStr = "";
+  let itemStr = "";
   for (let i = 0; i < cart.length; i++) {
     // console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
     // define intermediate variables
@@ -115,6 +125,7 @@ function showItems() {
 			<button class="remove" data-name="${name}">Remove</button>
 			<button class="add-one" data-name="${name}"> + </button>
 			<button class="remove-one" data-name="${name}"> - </button>
+			<input class="update" type="number" min="0" step="1" data-name="${name}">
 		</l1>`;
   }
   // add to innerHTML
@@ -152,7 +163,23 @@ function removeItem(name, qty = 0) {
       if (cart[i].qty < 1 || qty === 0) {
         cart.splice(i, 1);
       }
-			showItems();
+      showItems();
+      return;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Update Cart
+function updateCart(name, qty) {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].name === name) {
+      if (qty < 1) {
+        removeItem(name);
+        return;
+      }
+      cart[i].qty = qty;
+      showItems();
       return;
     }
   }
