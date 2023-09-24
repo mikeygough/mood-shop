@@ -116,7 +116,7 @@ function showItems() {
   // console.log(`\nYou have ${getQty()} items in your cart`);
   // console.log(`Cart Total: $${getTotal()}`);
   // set cartQty and cartTotal html
-  cartQty.innerHTML = `You have ${getQty()} items in your cart`;
+  cartQty.innerHTML = `You have ${getQty()} item(s) in your cart`;
   cartTotal.innerHTML = `Cart Total: $${getTotal()}`;
 
   // set itemList html
@@ -135,7 +135,7 @@ function showItems() {
 			<button class="remove" data-name="${name}">Remove</button>
 			<button class="add-one" data-name="${name}"> + </button>
 			<button class="remove-one" data-name="${name}"> - </button>
-			<input class="update" type="number" min="0" step="1" data-name="${name}">
+			<input class="update" type="number" min="0" step="1" data-name="${name}" placeholder="Adjust Quantity + Enter">
 		</l1>`;
   }
   // add to innerHTML
