@@ -20,7 +20,10 @@ for (let i = 0; i < data.length; i += 1) {
   console.log(data[i].image);
   img.width = 300;
   img.height = 300;
-  // create description p
+  // create title
+	const name = document.createElement("p");
+	name.innerHTML = data[i].name.toUpperCase();
+	// create description p
   const desc = document.createElement("p");
   desc.innerHTML = data[i].desc;
   // create price p
@@ -35,6 +38,7 @@ for (let i = 0; i < data.length; i += 1) {
   button.innerHTML = "Add to Cart";
   // Add the image, description, price and button to the div
   newDiv.appendChild(img);
+	newDiv.appendChild(name);
   newDiv.appendChild(desc);
   newDiv.appendChild(price);
   newDiv.appendChild(button);
