@@ -42,6 +42,15 @@ for (let i = 0; i < data.length; i += 1) {
   itemsContainer.appendChild(newDiv);
 }
 
+// select all buttons
+const allItemsButton = Array.from(document.querySelectorAll("button"));
+// console.log(allItemsButton);
+
+allItemsButton.forEach(elt => elt.addEventListener('click', () => {
+	addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+	showItems()
+}));
+
 // initialize cart
 const cart = [];
 
